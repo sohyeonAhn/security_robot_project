@@ -49,8 +49,8 @@ class CameraThread(QThread):
 class MyWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi(r'./control_gui.ui', self)
-        self.myunitree_b1 = myunitree()
+        uic.loadUi(r'./control_gui.ui', self) # Ui 연결
+        self.myunitree_b1 = myunitree() # myunitree  class 불러와서 명명
         #----- 변수 초기화 ------------------------------------------
         self.vel_0_N = 0
         self.vel_0_S = 0
@@ -82,37 +82,37 @@ class MyWindow(QMainWindow):
         self.connect_btn.clicked.connect(self.udp_connect) # 통신 연결 버튼
         self.camera_on_btn.clicked.connect(self.camera_on)
         # 컨트롤러 버튼
-        self.N_btn.pressed.connect(self.click_N)
-        self.N_btn.released.connect(self.release_N)
-        self.S_btn.pressed.connect(self.click_S)
-        self.S_btn.released.connect(self.release_S)
-        self.W_btn.pressed.connect(self.click_W)
-        self.W_btn.released.connect(self.release_W)
+        self.N_btn.pressed.connect(self.Click_Front_Btn)
+        self.N_btn.released.connect(self.Release_Front_Btn)
+        self.S_btn.pressed.connect(self.Click_Back_Btn)
+        self.S_btn.released.connect(self.Release_Back_Btn)
+        self.W_btn.pressed.connect(self.Click_Left_Btn)
+        self.W_btn.released.connect(self.Release_Left_Btn)
         self.E_btn.pressed.connect(self.click_E)
-        self.E_btn.released.connect(self.release_E)
+        self.E_btn.released.connect(self.Release_Right_Btn)
 
-        self.Stop_btn.clicked.connect(self.click_Stop)
+        self.Stop_btn.clicked.connect(self.Click_Stop_Btn)
 
-        self.L_btn.pressed.connect(self.click_L)
-        self.L_btn.released.connect(self.release_L)
-        self.R_btn.pressed.connect(self.click_R)
-        self.R_btn.released.connect(self.release_R)
+        self.L_btn.pressed.connect(self.Click_Turn_L_Btn)
+        self.L_btn.released.connect(self.Release_Turn_L_Btn)
+        self.R_btn.pressed.connect(self.Click_Turn_R_Btn)
+        self.R_btn.released.connect(self.Release_Turn_R_Btn)
 
-        self.Up_btn.pressed.connect(self.click_Up)
-        self.Down_btn.pressed.connect(self.click_Down)
+        self.Up_btn.pressed.connect(self.Click_Up_Btn)
+        self.Down_btn.pressed.connect(self.Click_Down_Btn)
         # euler, height 설정 버튼
-        self.euler_btn.pressed.connect(self.click_Euler)
-        self.height_btn.pressed.connect(self.click_Height)
+        self.euler_btn.pressed.connect(self.Click_Euler_Setting_Btn)
+        self.height_btn.pressed.connect(self.CLick_Height_Setting_Btn)
 
         self.auto_start_position_btn.pressed.connect(self.click_auto_start_Position)
         self.auto_end_position_btn.pressed.connect(self.click_auto_end_Position)
 
-        self.is_N_btn_pressed = False
-        self.is_S_btn_pressed = False
-        self.is_W_btn_pressed = False
-        self.is_E_btn_pressed = False
-        self.is_L_btn_pressed = False
-        self.is_R_btn_pressed = False
+        self.Front_btn_pressed_state = False
+        self.Back_btn_pressed_state = False
+        self.Left_btn_pressed_state = False
+        self.Right_btn_pressed_state = False
+        self.Turn_L_btn_pressed_state = False
+        self.Turn_R_btn_pressed_state = False
         # ------ 값 입력 ----------------------------------------------------
         self.input_vel_0.valueChanged.connect(self.vel_0_value_changed)
         self.input_vel_1.valueChanged.connect(self.vel_1_value_changed)
@@ -136,10 +136,9 @@ class MyWindow(QMainWindow):
         self.Heading_value_label = self.findChild(QLabel,"Heading_label")
         #------ ComboBox ---------------------------------------------------
         self.Mode_ComboBox = self.findChild(QComboBox,"mode_comboBox")
-        self.Mode_ComboBox.currentIndexChanged.connect(self.mode_combobox_changed)
-
+        self.Mode_ComboBox.currentIndexChanged.connect(self.Change_mode_combobox)
         self.GaitType_ComboBox = self.findChild(QComboBox, "gaittype_comboBox")
-        self.GaitType_ComboBox.currentIndexChanged.connect(self.gaittype_comboBox_changed)
+        self.GaitType_ComboBox.currentIndexChanged.connect(self.Change_gaittype_comboBox)
 
 #------ Dialog Window 띄우기 ----------------------
     def open_graph_window(self):
@@ -209,102 +208,102 @@ class MyWindow(QMainWindow):
         self.vel_position_1 = value
 
 #------버튼 클릭 이벤트--------------
-    def click_N(self):
-        self.is_N_btn_pressed = True
+    def Click_Front_Btn(self):
+        self.Front_btn_pressed_state = True
         self.N_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
         self.myunitree_b1.Move_Front(self.vel_0_N)
-    def click_S(self):
-        self.is_S_btn_pressed = True
+    def Click_Back_Btn(self):
+        self.Back_btn_pressed_state = True
         self.S_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
         self.myunitree_b1.Move_Back(self.vel_0_S)
-    def click_W(self):
-        self.is_W_btn_pressed = True
+    def Click_Left_Btn(self):
+        self.Left_btn_pressed_state = True
         self.W_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
         self.myunitree_b1.Move_Left(self.vel_1_W)
-    def click_E(self):
-        self.is_E_btn_pressed = True
+    def Click_Right_Btn(self):
+        self.Right_btn_pressed_state = True
         self.E_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
         self.myunitree_b1.Move_Right(self.vel_1_E)
-    def click_Stop(self):
-        self.myunitree_b1.click_force_Stop()
-    def click_L(self):
-        self.is_L_btn_pressed = True
+    def Click_Stop_Btn(self):
+        self.myunitree_b1.Robot_force_Stop()
+    def Click_Turn_L_Btn(self):
+        self.Turn_L_btn_pressed_state = True
         self.L_btn.setStyleSheet("background-color: rgb(206, 206, 206);")
-        self.myunitree_b1.click_L(self.yawspeed_value_L)
-    def click_R(self):
-        self.is_R_btn_pressed = True
+        self.myunitree_b1.Turn_Left(self.yawspeed_value_L)
+    def Click_Turn_R_Btn(self):
+        self.Turn_R_btn_pressed_state = True
         self.R_btn.setStyleSheet("background-color: rgb(206, 206, 206);")
-        self.myunitree_b1.click_R(self.yawspeed_value_R)
-    def click_Up(self):
-        self.myunitree_b1.click_Up()
-    def click_Down(self):
-        self.myunitree_b1.click_Down()
-    def click_Euler(self):
-        self.myunitree_b1.click_Euler(self.vel_euler_0,self.vel_euler_1,self.vel_euler_2)
-    def click_Height(self):
-        self.myunitree_b1.click_Height(self.vel_bodyheight)
+        self.myunitree_b1.Turn_Right(self.yawspeed_value_R)
+    def Click_Up_Btn(self):
+        self.myunitree_b1.Stand_Up()
+    def Click_Down_Btn(self):
+        self.myunitree_b1.Stand_Down()
+    def Click_Euler_Setting_Btn(self):
+        self.myunitree_b1.SetUp_Euler(self.vel_euler_0,self.vel_euler_1,self.vel_euler_2)
+    def CLick_Height_Setting_Btn(self):
+        self.myunitree_b1.SetUp_Height(self.vel_bodyheight)
 
     def click_auto_start_Position(self):
         self.AutoMode_flag = True
     def click_auto_end_Position(self):
         self.AutoMode_flag = False
-        self.myunitree_b1.click_Stop()
+        self.myunitree_b1.Robot_Stop()
 
-    def release_N(self):
-        self.is_N_btn_pressed = False
+    def Release_Front_Btn(self):
+        self.Front_btn_pressed_state = False
         self.N_btn.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.myunitree_b1.click_Stop()
-    def release_S(self):
-        self.is_S_btn_pressed = False
+        self.myunitree_b1.Robot_Stop()
+    def Release_Back_Btn(self):
+        self.Back_btn_pressed_state = False
         self.S_btn.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.myunitree_b1.click_Stop()
-    def release_W(self):
-        self.is_W_btn_pressed = False
+        self.myunitree_b1.Robot_Stop()
+    def Release_Left_Btn(self):
+        self.Left_btn_pressed_state = False
         self.W_btn.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.myunitree_b1.click_Stop()
-    def release_E(self):
-        self.is_E_btn_pressed = False
+        self.myunitree_b1.Robot_Stop()
+    def Release_Right_Btn(self):
+        self.Right_btn_pressed_state = False
         self.E_btn.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.myunitree_b1.click_Stop()
-    def release_L(self):
-        self.is_L_btn_pressed = False
+        self.myunitree_b1.Robot_Stop()
+    def Release_Turn_L_Btn(self):
+        self.Turn_L_btn_pressed_state = False
         self.L_btn.setStyleSheet("background:rgb(112, 112, 112);"
                                  "color:rgb(255, 255, 255);")
-        self.myunitree_b1.click_Stop()
-    def release_R(self):
-        self.is_R_btn_pressed = False
+        self.myunitree_b1.Robot_Stop()
+    def Release_Turn_R_Btn(self):
+        self.Turn_R_btn_pressed_state = False
         self.R_btn.setStyleSheet("background:rgb(112, 112, 112);"
                                  "color:rgb(255, 255, 255);")
-        self.myunitree_b1.click_Stop()
+        self.myunitree_b1.Robot_Stop()
 
-#------ 콤보 박스 클릭 이벤트 --------------
-    def mode_combobox_changed(self, index):
+#------ 콤보 박스 메소드 --------------
+    def Change_mode_combobox(self, index):
         selected_item = self.Mode_ComboBox.currentText()
         print(f"Selected Mode: {selected_item}")
 
         if selected_item == "IDLE (0)":
-            self.myunitree_b1.click_ModeCombo_IDLE()
+            self.myunitree_b1.Change_Mode_to_IDLE()
         elif selected_item == "Force Stand (1)":
-            self.myunitree_b1.click_ModeCombo_Force_Stand()
+            self.myunitree_b1.Change_Mode_to_Force_Stand()
         # elif selected_item == "Vel Walk (2)":
-            # self.myunitree_b1.click_ModeCombo_VEL_WALK()
+            # self.myunitree_b1.Change_Mode_to_VEL_WALK()
         elif selected_item == "Stand Down (5)":
-            self.myunitree_b1.click_ModeCombo_STAND_DOWN()
+            self.myunitree_b1.Change_Mode_to_STAND_DOWN()
         elif selected_item == "Stand Up (6)":
-            self.myunitree_b1.click_ModeCombo_STAND_UP()
+            self.myunitree_b1.Change_Mode_to_STAND_UP()
 
-    def gaittype_comboBox_changed(self, index):
+    def Change_gaittype_comboBox(self, index):
         selected_item = self.GaitType_ComboBox.currentText()
         print(f"Selected GaitType: {selected_item}")
 
         if selected_item == "IDLE (0)":
-            self.myunitree_b1.click_GaitTypeCombo_IDLE()
+            self.myunitree_b1.Change_GaitType_to_IDLE()
         elif selected_item == "Trot (1)":
-            self.myunitree_b1.click_GaitTypeCombo_Trot()
+            self.myunitree_b1.Change_GaitType_to_Trot()
         elif selected_item == "Climb Stair (2)":
-            self.myunitree_b1.click_GaitTypeCombo_CLIMB_STAIR()
+            self.myunitree_b1.Change_GaitType_to_CLIMB_STAIR()
         elif selected_item == "Trot Obstacle (3)":
-            self.myunitree_b1.click_GaitTypeCombo_TROT_OBSTACLE()
+            self.myunitree_b1.Change_GaitType_to_TROT_OBSTACLE()
 #---------------------------------------------------------------------
     def udp_connect(self):
         try:
