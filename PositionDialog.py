@@ -87,7 +87,7 @@ class PositionDialog(QDialog):
             self.plot_widget_quaternion_bar.addItem(label)
 
     def update_plot(self):
-        self.dialog_data_position = self.parent.plot_data_position
+        self.dialog_data_position = self.parent.data_position_hstate
         self.dialog_data_quaternion = self.parent.view_data_quaternion
         if self.dialog_data_position:
             y_values = self.dialog_data_position

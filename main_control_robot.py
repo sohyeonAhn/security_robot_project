@@ -52,10 +52,10 @@ class MyWindow(QMainWindow):
         uic.loadUi(r'./control_gui.ui', self) # Ui 연결
         self.myunitree_b1 = myunitree() # myunitree  class 불러와서 명명
         #----- 변수 초기화 ------------------------------------------
-        self.vel_0_N = 0
-        self.vel_0_S = 0
-        self.vel_1_W = 0
-        self.vel_1_E = 0
+        self.velocity_0_Front_value = 0
+        self.velocity_0_Back_value = 0
+        self.velocity_1_Left_value = 0
+        self.velocity_1_Right_value = 0
         self.yawspeed_value_L = 0
         self.yawspeed_value_R = 0
         self.vel_euler_0 = 0
@@ -88,7 +88,7 @@ class MyWindow(QMainWindow):
         self.S_btn.released.connect(self.Release_Back_Btn)
         self.W_btn.pressed.connect(self.Click_Left_Btn)
         self.W_btn.released.connect(self.Release_Left_Btn)
-        self.E_btn.pressed.connect(self.click_E)
+        self.E_btn.pressed.connect(self.Click_Right_Btn)
         self.E_btn.released.connect(self.Release_Right_Btn)
 
         self.Stop_btn.clicked.connect(self.Click_Stop_Btn)
@@ -163,7 +163,7 @@ class MyWindow(QMainWindow):
 
         self.plot_data_bodyHeight = self.myunitree_b1.hstate_bodyHeight
         self.plot_data_footforce = self.myunitree_b1.hstate_footforce
-        self.plot_data_position = self.myunitree_b1.hstate_position
+        self.data_position_hstate = self.myunitree_b1.hstate_position
 
         self.view_data_rpy = self.myunitree_b1.hstate_rpy
         self.view_data_motorQ = self.myunitree_b1.hstate_motorQ
@@ -184,11 +184,11 @@ class MyWindow(QMainWindow):
 
 #------데이터 입력 이벤트------------
     def vel_0_value_changed(self, value):
-        self.vel_0_N = value
-        self.vel_0_S = -value
+        self.velocity_0_Front_value = value
+        self.velocity_0_Back_value = -value
     def vel_1_value_changed(self, value):
-        self.vel_1_W = value
-        self.vel_1_E = -value
+        self.velocity_1_Left_value = value
+        self.velocity_1_Right_value = -value
     def yawspeed_value_changed(self, value):
         self.yawspeed_value_L = value
         self.yawspeed_value_R = -value
@@ -203,27 +203,27 @@ class MyWindow(QMainWindow):
         self.vel_bodyheight = value
 
     def vel_position_value_0_changed(self,value):
-        self.vel_position_0 = value
+        self.position_0_InputValue = value
     def vel_position_value_1_changed(self,value):
-        self.vel_position_1 = value
+        self.position_1_InputValue = value
 
 #------버튼 클릭 이벤트--------------
     def Click_Front_Btn(self):
         self.Front_btn_pressed_state = True
         self.N_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
-        self.myunitree_b1.Move_Front(self.vel_0_N)
+        self.myunitree_b1.Move_Front(self.velocity_0_Front_value)
     def Click_Back_Btn(self):
         self.Back_btn_pressed_state = True
         self.S_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
-        self.myunitree_b1.Move_Back(self.vel_0_S)
+        self.myunitree_b1.Move_Back(self.velocity_0_Back_value)
     def Click_Left_Btn(self):
         self.Left_btn_pressed_state = True
         self.W_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
-        self.myunitree_b1.Move_Left(self.vel_1_W)
+        self.myunitree_b1.Move_Left(self.velocity_1_Left_value)
     def Click_Right_Btn(self):
         self.Right_btn_pressed_state = True
         self.E_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
-        self.myunitree_b1.Move_Right(self.vel_1_E)
+        self.myunitree_b1.Move_Right(self.velocity_1_Right_value)
     def Click_Stop_Btn(self):
         self.myunitree_b1.Robot_force_Stop()
     def Click_Turn_L_Btn(self):
@@ -318,8 +318,8 @@ class MyWindow(QMainWindow):
         self.SOC_label.setText("{:.1f}".format(self.data_SOC))
         self.Mode_label.setText("{:.1f}".format(self.data_mode))
         self.GaitType_label.setText("{:.1f}".format(self.data_gaitType))
-        self.State_Position_0_label.setText("{:.1f}".format(self.plot_data_position[0]))
-        self.State_Position_1_label.setText("{:.1f}".format(self.plot_data_position[1]))
+        self.State_Position_0_label.setText("{:.1f}".format(self.data_position_hstate[0]))
+        self.State_Position_1_label.setText("{:.1f}".format(self.data_position_hstate[1]))
         self.Yawspeed_value_label.setText("{:.01f}".format(self.data_yawspeed))
         self.Heading_value_label.setText("{:.01f}".format(self.heading))
 
@@ -369,63 +369,63 @@ class MyWindow(QMainWindow):
 
 #------ Auto Position 메서드---------------------
     def Auto_move_1(self):
-        # plot_data_position: 현재 좌표 [y,x,높이]
-        # vel_position_0: 지정한 y좌표
-        # vel_position_1: 지정한 x좌표
+        # data_position_hstate: 현재 좌표 [y,x,높이]
+        # position_0_InputValue: 지정한 y좌표
+        # position_1_InputValue: 지정한 x좌표
 
         # y좌표 방향 확인
-        if self.vel_position_0 > self.plot_data_position[0]:
-            print(f"현재 위치1-1 :({self.plot_data_position[0]}, {self.plot_data_position[1]})")
+        if self.position_0_InputValue > self.data_position_hstate[0]:
+            print(f"현재 위치1-1 :({self.data_position_hstate[0]}, {self.data_position_hstate[1]})")
             # y좌표 좌표 격차 확인
-            if abs(self.vel_position_0 - self.plot_data_position[0]) > 0.1:
+            if abs(self.position_0_InputValue - self.data_position_hstate[0]) > 0.1:
                 print("1-1 격차가 0.1 초과")
-                self.move_vel_0 = self.vel_0_N
-            elif abs(self.vel_position_0 - self.plot_data_position[0]) < 0.1:
+                self.move_vel_0 = self.velocity_0_Front_value
+            elif abs(self.position_0_InputValue - self.data_position_hstate[0]) < 0.1:
                 print("1-1 격차가 0.1 미만")
                 self.move_vel_0 = 0
-        elif self.vel_position_0 < self.plot_data_position[0]:
-            print(f"현재 위치1-2 :({self.plot_data_position[0]}, {self.plot_data_position[1]})")
+        elif self.position_0_InputValue < self.data_position_hstate[0]:
+            print(f"현재 위치1-2 :({self.data_position_hstate[0]}, {self.data_position_hstate[1]})")
             # y좌표 좌표 격차 확인
-            if abs(self.vel_position_0 - self.plot_data_position[0]) > 0.1:
+            if abs(self.position_0_InputValue - self.data_position_hstate[0]) > 0.1:
                 print("1-2 격차가 0.1 초과")
-                self.move_vel_0 = self.vel_0_S
-            elif abs(self.vel_position_0 - self.plot_data_position[0]) < 0.1:
+                self.move_vel_0 = self.velocity_0_Back_value
+            elif abs(self.position_0_InputValue - self.data_position_hstate[0]) < 0.1:
                 print("1-2 격차가 0.1 미만")
                 self.move_vel_0 = 0
 
         # x좌표 방향 확인
         # left(+)/right(-)
-        if self.vel_position_1 > self.plot_data_position[1]:
-            print(f"현재 위치2-1 :({self.plot_data_position[0]}, {self.plot_data_position[1]})")
+        if self.position_1_InputValue > self.data_position_hstate[1]:
+            print(f"현재 위치2-1 :({self.data_position_hstate[0]}, {self.data_position_hstate[1]})")
             # x좌표 좌표 격차 확인
-            if abs(self.vel_position_1 - self.plot_data_position[1]) > 0.1:
+            if abs(self.position_1_InputValue - self.data_position_hstate[1]) > 0.1:
                 print("2-1 격차가 0.1 초과")
-                self.move_vel_1 = self.vel_1_W
-            elif abs(self.vel_position_1 - self.plot_data_position[1]) <= 0.1:
+                self.move_vel_1 = self.velocity_1_Left_value
+            elif abs(self.position_1_InputValue - self.data_position_hstate[1]) <= 0.1:
                 print("2-1 격차가 0.1 미만")
                 self.move_vel_1 = 0
-        elif self.vel_position_1 < self.plot_data_position[1]:
-            print(f"현재 위치2-2 :({self.plot_data_position[0]}, {self.plot_data_position[1]})")
+        elif self.position_1_InputValue < self.data_position_hstate[1]:
+            print(f"현재 위치2-2 :({self.data_position_hstate[0]}, {self.data_position_hstate[1]})")
             # x좌표 좌표 격차 확인
-            if abs(self.vel_position_1 - self.plot_data_position[1]) > 0.1:
+            if abs(self.position_1_InputValue - self.data_position_hstate[1]) > 0.1:
                 print("2-2 격차가 0.1 초과")
-                self.move_vel_1 = self.vel_1_E
-            elif abs(self.vel_position_1 - self.plot_data_position[1]) < 0.1:
+                self.move_vel_1 = self.velocity_1_Right_value
+            elif abs(self.position_1_InputValue - self.data_position_hstate[1]) < 0.1:
                 print("2-2 격차가 0.1 미만")
                 self.move_vel_1 = 0
 
         # 좌표 지정 -> 이동
-        self.myunitree_b1.click_mult(self.move_vel_0, self.move_vel_1)
+        self.myunitree_b1.Move_mult(self.move_vel_0, self.move_vel_1)
 
         # 좌표이동 완료
-        if abs(self.vel_position_1 - self.plot_data_position[1]) < 0.1 and abs(self.vel_position_0 - self.plot_data_position[0]) < 0.1:
+        if abs(self.position_1_InputValue - self.data_position_hstate[1]) < 0.1 and abs(self.position_0_InputValue - self.data_position_hstate[0]) < 0.1:
             print("좌표 지정 완료")
             self.click_auto_end_Position()
 
     def Auto_move_2(self):
-        # plot_data_position: 현재 좌표 [y,x,높이]
-        # vel_position_0: 지정한 y좌표
-        # vel_position_1: 지정한 x좌표
+        # data_position_hstate: 현재 좌표 [y,x,높이]
+        # position_0_InputValue: 지정한 y좌표
+        # position_1_InputValue: 지정한 x좌표
 
         f = open("datalog.csv","a")
 
@@ -437,8 +437,8 @@ class MyWindow(QMainWindow):
         self.rotation_angle = -math.radians(self.heading)
 
         # 타겟 좌표
-        self.target_x = (self.vel_position_1) - (self.plot_data_position[1])
-        self.target_y = (self.vel_position_0) - (self.plot_data_position[0])
+        self.target_x = (self.position_1_InputValue) - (self.data_position_hstate[1])
+        self.target_y = (self.position_0_InputValue) - (self.data_position_hstate[0])
 
         # 축회전: 절대 -> 상대
         self.target_x_t = (self.target_x)*(math.cos(self.rotation_angle))+(self.target_y) * (math.sin(self.rotation_angle))
@@ -448,9 +448,9 @@ class MyWindow(QMainWindow):
         # y좌표 방향 확인
         if abs(self.target_y_t - 0) > 0.2:
             if self.target_y_t > 0:
-                self.move_vel_0 = self.vel_0_N
+                self.move_vel_0 = self.velocity_0_Front_value
             else:
-                self.move_vel_0 = self.vel_0_S
+                self.move_vel_0 = self.velocity_0_Back_value
         elif abs(self.target_y_t - 0) < 0.2:
             self.move_vel_0 = 0
 
@@ -458,24 +458,24 @@ class MyWindow(QMainWindow):
         # left(+)/right(-)
         if abs(self.target_x_t - 0) > 0.2:
             if self.target_x_t > 0:
-                self.move_vel_1 = self.vel_1_W
+                self.move_vel_1 = self.velocity_1_Left_value
             else:
-                self.move_vel_1 = self.vel_1_E
+                self.move_vel_1 = self.velocity_1_Right_value
         elif abs(self.target_x_t - 0) <= 0.2:
             self.move_vel_1 = 0
 
-        data = "%f,%f,%f,%f,%f,%f,%f,%f,%f\n" % (self.plot_data_position[1], self.plot_data_position[0],self.rotation_angle,self.target_x,self.target_y,self.target_x_t,self.target_y_t,self.move_vel_0,self.move_vel_1)
+        data = "%f,%f,%f,%f,%f,%f,%f,%f,%f\n" % (self.data_position_hstate[1], self.data_position_hstate[0],self.rotation_angle,self.target_x,self.target_y,self.target_x_t,self.target_y_t,self.move_vel_0,self.move_vel_1)
         f.write(data)
 
         # 좌표 지정 -> 이동
-        self.myunitree_b1.click_mult(self.move_vel_0, self.move_vel_1)
+        self.myunitree_b1.Move_mult(self.move_vel_0, self.move_vel_1)
 
         # 좌표이동 완료
         if abs(self.target_x_t - 0) < 0.2 and abs(self.target_y_t - 0) < 0.2:
             # print("좌표 지정 완료")
             self.click_auto_end_Position()
         # 좌표이동 완료
-        if abs(self.vel_position_1 - self.plot_data_position[1]) < 0.2 and abs(self.vel_position_0 - self.plot_data_position[0]) < 0.2:
+        if abs(self.position_1_InputValue - self.data_position_hstate[1]) < 0.2 and abs(self.position_0_InputValue - self.data_position_hstate[0]) < 0.2:
             # print("좌표 지정 완료")
             self.click_auto_end_Position()
 
