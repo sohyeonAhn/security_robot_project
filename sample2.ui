@@ -623,6 +623,158 @@ color:rgb(255, 255, 255)</string>
      </item>
     </layout>
    </widget>
+   <widget class="QFrame" name="frame_4">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>760</y>
+      <width>231</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(134, 134, 134);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="auto_start_position_btn">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>110</y>
+       <width>101</width>
+       <height>33</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>에스코어 드림 6 Bold</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>Auto 시작</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>205</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_8">
+        <property name="font">
+         <font>
+          <family>에스코어 드림 6 Bold</family>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>위치 이동 시키기</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QDoubleSpinBox" name="input_position_0">
+          <property name="font">
+           <font>
+            <family>에스코어 드림 6 Bold</family>
+            <pointsize>9</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="minimum">
+           <double>-5.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>5.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.100000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="input_position_1">
+          <property name="font">
+           <font>
+            <family>에스코어 드림 6 Bold</family>
+            <pointsize>9</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="minimum">
+           <double>-5.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>5.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.100000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QPushButton" name="auto_end_position_btn">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>110</y>
+       <width>101</width>
+       <height>33</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>에스코어 드림 6 Bold</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>Auto 끝</string>
+     </property>
+    </widget>
+   </widget>
    <widget class="QWidget" name="horizontalLayoutWidget_3">
     <property name="geometry">
      <rect>
@@ -786,8 +938,8 @@ background-color: rgb(54, 54, 54);</string>
    <widget class="QTextBrowser" name="highstate_textBrowser">
     <property name="geometry">
      <rect>
-      <x>1000</x>
-      <y>860</y>
+      <x>1270</x>
+      <y>820</y>
       <width>71</width>
       <height>51</height>
      </rect>
@@ -805,8 +957,8 @@ color: rgb(0, 0, 255);</string>
    <widget class="QPushButton" name="N_btn">
     <property name="geometry">
      <rect>
-      <x>900</x>
-      <y>670</y>
+      <x>1170</x>
+      <y>630</y>
       <width>70</width>
       <height>70</height>
      </rect>
@@ -832,8 +984,8 @@ color: rgb(0, 0, 255);</string>
    <widget class="QPushButton" name="Stop_btn">
     <property name="geometry">
      <rect>
-      <x>900</x>
-      <y>760</y>
+      <x>1170</x>
+      <y>720</y>
       <width>70</width>
       <height>70</height>
      </rect>
@@ -860,8 +1012,8 @@ color: rgb(255, 255, 255)</string>
    <widget class="QPushButton" name="R_btn">
     <property name="geometry">
      <rect>
-      <x>1000</x>
-      <y>690</y>
+      <x>1270</x>
+      <y>650</y>
       <width>70</width>
       <height>40</height>
      </rect>
@@ -885,8 +1037,8 @@ color:rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="L_btn">
     <property name="geometry">
      <rect>
-      <x>800</x>
-      <y>690</y>
+      <x>1070</x>
+      <y>650</y>
       <width>70</width>
       <height>40</height>
      </rect>
@@ -910,8 +1062,8 @@ color:rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="E_btn">
     <property name="geometry">
      <rect>
-      <x>1000</x>
-      <y>760</y>
+      <x>1270</x>
+      <y>720</y>
       <width>70</width>
       <height>70</height>
      </rect>
@@ -934,8 +1086,8 @@ color:rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="S_btn">
     <property name="geometry">
      <rect>
-      <x>900</x>
-      <y>850</y>
+      <x>1170</x>
+      <y>810</y>
       <width>70</width>
       <height>70</height>
      </rect>
@@ -971,8 +1123,8 @@ color:rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="W_btn">
     <property name="geometry">
      <rect>
-      <x>800</x>
-      <y>760</y>
+      <x>1070</x>
+      <y>720</y>
       <width>70</width>
       <height>70</height>
      </rect>
@@ -1018,8 +1170,8 @@ color:rgb(255, 255, 255);</string>
    <widget class="QFrame" name="frame_5">
     <property name="geometry">
      <rect>
-      <x>1100</x>
-      <y>590</y>
+      <x>450</x>
+      <y>760</y>
       <width>351</width>
       <height>101</height>
      </rect>
@@ -1157,164 +1309,13 @@ color:rgb(255, 255, 255);</string>
      </layout>
     </widget>
    </widget>
-   <widget class="QFrame" name="frame_4">
-    <property name="geometry">
-     <rect>
-      <x>1220</x>
-      <y>720</y>
-      <width>231</width>
-      <height>161</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(134, 134, 134);</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QPushButton" name="auto_start_position_btn">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>110</y>
-       <width>101</width>
-       <height>33</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>에스코어 드림 6 Bold</family>
-       <pointsize>10</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string>Auto 시작</string>
-     </property>
-    </widget>
-    <widget class="QWidget" name="verticalLayoutWidget_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>205</width>
-       <height>80</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QLabel" name="label_8">
-        <property name="font">
-         <font>
-          <family>에스코어 드림 6 Bold</family>
-          <pointsize>14</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 255, 255);</string>
-        </property>
-        <property name="text">
-         <string>위치 이동 시키기</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_5">
-        <item>
-         <widget class="QDoubleSpinBox" name="input_position_0">
-          <property name="font">
-           <font>
-            <family>에스코어 드림 6 Bold</family>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="minimum">
-           <double>-5.000000000000000</double>
-          </property>
-          <property name="maximum">
-           <double>5.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.100000000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QDoubleSpinBox" name="input_position_1">
-          <property name="font">
-           <font>
-            <family>에스코어 드림 6 Bold</family>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="minimum">
-           <double>-5.000000000000000</double>
-          </property>
-          <property name="maximum">
-           <double>5.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.100000000000000</double>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QPushButton" name="auto_end_position_btn">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>110</y>
-       <width>101</width>
-       <height>33</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>에스코어 드림 6 Bold</family>
-       <pointsize>10</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string>Auto 끝</string>
-     </property>
-    </widget>
-   </widget>
    <zorder>frame_5</zorder>
    <zorder>connect_btn</zorder>
    <zorder>frame</zorder>
    <zorder>textEdit</zorder>
    <zorder>camera_on_btn</zorder>
    <zorder>horizontalLayoutWidget_11</zorder>
+   <zorder>frame_4</zorder>
    <zorder>horizontalLayoutWidget_3</zorder>
    <zorder>camera_view</zorder>
    <zorder>slam_view</zorder>
@@ -1331,7 +1332,6 @@ color:rgb(255, 255, 255);</string>
    <zorder>W_btn</zorder>
    <zorder>position_view</zorder>
    <zorder>position_state_graph</zorder>
-   <zorder>frame_4</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actiontest">

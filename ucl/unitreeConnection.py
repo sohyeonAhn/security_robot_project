@@ -13,7 +13,7 @@ local_ip_eth = '192.168.123.14'
 addr_wifi = '192.168.123.220'
 # addr_wifi = '192.168.123.220'
 addr_low = '192.168.123.10'
-addr_high = '192.168.123.220'
+addr_high = '192.168.123.161'
 
 
 LOW_WIRED_DEFAULTS = (listenPort, addr_low, sendPort_low, local_ip_eth)

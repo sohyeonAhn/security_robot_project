@@ -9,8 +9,6 @@ from PyQt5 import uic
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from myunitree_robot import myunitree
-from myDialog import myDialog
-from PositionDialog import PositionDialog
 from View3DDialog import View3DDialog
 
 class Tread1(QThread):
@@ -66,16 +64,10 @@ class MyWindow(QMainWindow):
         self.AutoMode_flag = False
 
         #------ Dialog ----------------------------------------------------
-        self.actionGraph = QAction("Open Graph", self)
-        self.actionPositionGraph = QAction("Position View", self)
         self.view_robot_3D = QAction("3D View", self)
-        self.actionGraph.triggered.connect(self.open_graph_window)
-        self.actionPositionGraph.triggered.connect(self.open_position_window)
         self.view_robot_3D.triggered.connect(self.open_view_robot_3D)
 
         self.fileMenu = self.menuBar().addMenu("Graph")
-        self.fileMenu.addAction(self.actionGraph)
-        self.fileMenu.addAction(self.actionPositionGraph)
         self.fileMenu.addAction(self.view_robot_3D)
 
         # ------ 버튼 -----------------------------------------------------
@@ -141,12 +133,6 @@ class MyWindow(QMainWindow):
         self.GaitType_ComboBox.currentIndexChanged.connect(self.Change_gaittype_comboBox)
 
 #------ Dialog Window 띄우기 ----------------------
-    def open_graph_window(self):
-        self.graph_window = myDialog(self)
-        self.graph_window.show()
-    def open_position_window(self):
-        self.graph_window = PositionDialog(self)
-        self.graph_window.show()
     def open_view_robot_3D(self):
         self.view_window = View3DDialog(self)
         self.view_window.show()
