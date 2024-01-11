@@ -9,12 +9,14 @@ from ucl.complex import motorCmd
 class myunitree:
     def __init__(self):
         i = 0
+        self.connect_flag = False
     def connect(self):
         self.conn = unitreeConnection(HIGH_WIFI_DEFAULTS)  # 네트워크 연결
         self.conn.startRecv()
 
         self.hcmd = highCmd()
         self.hstate = highState()
+        self.connect_flag = True
 
     def cmdInit(self):
         time.sleep(0.01)
@@ -95,7 +97,6 @@ class myunitree:
         # Pitch: (+)고개 숙이기 ,(-)고개 들기
         # Yaw: (+)왼쪽, (-)오른쪽
         self.hcmd.euler = [row_value,pitch_value,yaw_value]
-
     def SetUp_Height(self,bodyHeight_value):
         self.cmdInit()
         # self.hcmd.mode = MotorModeHigh.FORCE_STAND

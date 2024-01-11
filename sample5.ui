@@ -1314,7 +1314,7 @@ color:rgb(255, 255, 255);</string>
      <rect>
       <x>320</x>
       <y>20</y>
-      <width>226</width>
+      <width>196</width>
       <height>31</height>
      </rect>
     </property>
@@ -1352,31 +1352,6 @@ color:rgb(255, 255, 255);</string>
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="position_state_initialization_btn">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>680</y>
-      <width>231</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>에스코어 드림 6 Bold</family>
-      <pointsize>25</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 170, 127);
-color: rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>초기화</string>
-    </property>
-   </widget>
    <zorder>frame_5</zorder>
    <zorder>connect_btn</zorder>
    <zorder>frame</zorder>
@@ -1401,7 +1376,6 @@ color: rgb(255, 255, 255);</string>
    <zorder>position_state_graph</zorder>
    <zorder>frame_4</zorder>
    <zorder>horizontalLayoutWidget_5</zorder>
-   <zorder>position_state_initialization_btn</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actiontest">
