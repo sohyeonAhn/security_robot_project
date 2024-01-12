@@ -54,7 +54,7 @@ color:rgb(255, 255, 255)</string>
       <x>20</x>
       <y>590</y>
       <width>361</width>
-      <height>341</height>
+      <height>321</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -418,7 +418,7 @@ color:rgb(255, 255, 255)</string>
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>1630</x>
       <y>20</y>
       <width>151</width>
       <height>31</height>
@@ -652,7 +652,7 @@ color:rgb(255, 255, 255)</string>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="state_position_0_label">
+      <widget class="QLabel" name="state_position_1_label">
        <property name="font">
         <font>
          <family>에스코어 드림 6 Bold</family>
@@ -673,7 +673,7 @@ color:rgb(255, 255, 255)</string>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="state_position_1_label">
+      <widget class="QLabel" name="state_position_0_label">
        <property name="font">
         <font>
          <family>에스코어 드림 6 Bold</family>
@@ -786,10 +786,10 @@ background-color: rgb(54, 54, 54);</string>
    <widget class="QTextBrowser" name="highstate_textBrowser">
     <property name="geometry">
      <rect>
-      <x>1000</x>
-      <y>860</y>
-      <width>71</width>
-      <height>51</height>
+      <x>1090</x>
+      <y>730</y>
+      <width>91</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="font">
@@ -805,8 +805,8 @@ color: rgb(0, 0, 255);</string>
    <widget class="QPushButton" name="N_btn">
     <property name="geometry">
      <rect>
-      <x>900</x>
-      <y>670</y>
+      <x>870</x>
+      <y>660</y>
       <width>70</width>
       <height>70</height>
      </rect>
@@ -832,8 +832,8 @@ color: rgb(0, 0, 255);</string>
    <widget class="QPushButton" name="Stop_btn">
     <property name="geometry">
      <rect>
-      <x>900</x>
-      <y>760</y>
+      <x>870</x>
+      <y>750</y>
       <width>70</width>
       <height>70</height>
      </rect>
@@ -860,8 +860,8 @@ color: rgb(255, 255, 255)</string>
    <widget class="QPushButton" name="R_btn">
     <property name="geometry">
      <rect>
-      <x>1000</x>
-      <y>690</y>
+      <x>970</x>
+      <y>680</y>
       <width>70</width>
       <height>40</height>
      </rect>
@@ -885,8 +885,8 @@ color:rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="L_btn">
     <property name="geometry">
      <rect>
-      <x>800</x>
-      <y>690</y>
+      <x>770</x>
+      <y>680</y>
       <width>70</width>
       <height>40</height>
      </rect>
@@ -910,8 +910,8 @@ color:rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="E_btn">
     <property name="geometry">
      <rect>
-      <x>1000</x>
-      <y>760</y>
+      <x>970</x>
+      <y>750</y>
       <width>70</width>
       <height>70</height>
      </rect>
@@ -934,8 +934,8 @@ color:rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="S_btn">
     <property name="geometry">
      <rect>
-      <x>900</x>
-      <y>850</y>
+      <x>870</x>
+      <y>840</y>
       <width>70</width>
       <height>70</height>
      </rect>
@@ -971,8 +971,8 @@ color:rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="W_btn">
     <property name="geometry">
      <rect>
-      <x>800</x>
-      <y>760</y>
+      <x>770</x>
+      <y>750</y>
       <width>70</width>
       <height>70</height>
      </rect>
@@ -1018,7 +1018,7 @@ color:rgb(255, 255, 255);</string>
    <widget class="QFrame" name="frame_5">
     <property name="geometry">
      <rect>
-      <x>1100</x>
+      <x>1090</x>
       <y>590</y>
       <width>351</width>
       <height>101</height>
@@ -1160,10 +1160,10 @@ color:rgb(255, 255, 255);</string>
    <widget class="QFrame" name="frame_4">
     <property name="geometry">
      <rect>
-      <x>1220</x>
-      <y>720</y>
-      <width>231</width>
-      <height>161</height>
+      <x>1200</x>
+      <y>730</y>
+      <width>241</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1309,6 +1309,92 @@ color:rgb(255, 255, 255);</string>
      </property>
     </widget>
    </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>20</y>
+      <width>227</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>   연결상태:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="state_connect_label">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string> Disconnect </string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="disconnect_btn">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>20</y>
+      <width>121</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(255, 0, 0);
+color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>DISCONNECT</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="BQ_NTC_label">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>680</y>
+      <width>64</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>BQ_NTC_label</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="MCU_NTC_label">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>710</y>
+      <width>64</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>MCU_NTC_label</string>
+    </property>
+   </widget>
    <zorder>frame_5</zorder>
    <zorder>connect_btn</zorder>
    <zorder>frame</zorder>
@@ -1332,6 +1418,10 @@ color:rgb(255, 255, 255);</string>
    <zorder>position_view</zorder>
    <zorder>position_state_graph</zorder>
    <zorder>frame_4</zorder>
+   <zorder>horizontalLayoutWidget_5</zorder>
+   <zorder>disconnect_btn</zorder>
+   <zorder>BQ_NTC_label</zorder>
+   <zorder>MCU_NTC_label</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actiontest">

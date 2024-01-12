@@ -62,14 +62,19 @@ class MyWindow(QMainWindow):
         self.AutoMode_flag = False
 
         # ------ Dialog ----------------------------------------------------
+        self.actionGraph = QAction("Open Graph", self)
+        self.actionPositionGraph = QAction("Position View", self)
         self.view_robot_3D = QAction("3D View", self)
         self.view_robot_3D.triggered.connect(self.open_view_robot_3D)
 
         self.fileMenu = self.menuBar().addMenu("Graph")
+        self.fileMenu.addAction(self.actionGraph)
+        self.fileMenu.addAction(self.actionPositionGraph)
         self.fileMenu.addAction(self.view_robot_3D)
 
         # ------ 버튼 -----------------------------------------------------
-        self.connect_btn.clicked.connect(self.udp_connect)  # 통신 연결 버튼
+        self.connect_btn.clicked.connect(self.udp_connect)      # 통신 연결 버튼
+        self.disconnect_btn.clicked.connect(self.udp_disconnect)
         self.camera_on_btn.clicked.connect(self.camera_on)
         # 컨트롤러 버튼
         self.N_btn.pressed.connect(self.Click_Front_Btn)
@@ -114,6 +119,8 @@ class MyWindow(QMainWindow):
         self.State_Position_0_label = self.findChild(QLabel, "state_position_0_label")
         self.State_Position_1_label = self.findChild(QLabel, "state_position_1_label")
         self.State_Connect_label = self.findChild(QLabel, "state_connect_label")
+        self.BQ_NTC_label = self.findChild(QLabel, "BQ_NTC_label")
+        self.MCU_NTC_label = self.findChild(QLabel, "MCU_NTC_label")
         # ------ ComboBox ---------------------------------------------------
         self.Mode_ComboBox = self.findChild(QComboBox, "mode_comboBox")
         self.Mode_ComboBox.currentIndexChanged.connect(self.Change_mode_combobox)
@@ -154,6 +161,8 @@ class MyWindow(QMainWindow):
         self.data_mode = self.myunitree_b1.hstate_mode
         self.data_gaitType = self.myunitree_b1.hstate_gaitType
         self.data_yawspeed = self.myunitree_b1.hstate_yawspeed
+        self.data_BQ_NTC = self.myunitree_b1.hstate_bms_BQ_NTC
+        self.data_MCU_NTC = self.myunitree_b1.hstate_bms_MCU_NTC
 
         self.plot_data_bodyHeight = self.myunitree_b1.hstate_bodyHeight
         self.plot_data_footforce = self.myunitree_b1.hstate_footforce
@@ -180,14 +189,18 @@ class MyWindow(QMainWindow):
     def vel_0_value_changed(self, value):
         self.velocity_0_Front_value = value
         self.velocity_0_Back_value = -value
+
     def vel_1_value_changed(self, value):
         self.velocity_1_Left_value = value
         self.velocity_1_Right_value = -value
+
     def yawspeed_value_changed(self, value):
         self.yawspeed_value_L = value
         self.yawspeed_value_R = -value
+
     def vel_position_value_0_changed(self, value):
         self.position_0_InputValue = value
+
     def vel_position_value_1_changed(self, value):
         self.position_1_InputValue = value
 
@@ -196,18 +209,22 @@ class MyWindow(QMainWindow):
         self.Front_btn_pressed_state = True
         self.N_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
         self.myunitree_b1.Move_Front(self.velocity_0_Front_value)
+
     def Click_Back_Btn(self):
         self.Back_btn_pressed_state = True
         self.S_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
         self.myunitree_b1.Move_Back(self.velocity_0_Back_value)
+
     def Click_Left_Btn(self):
         self.Left_btn_pressed_state = True
         self.W_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
         self.myunitree_b1.Move_Left(self.velocity_1_Left_value)
+
     def Click_Right_Btn(self):
         self.Right_btn_pressed_state = True
         self.E_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
         self.myunitree_b1.Move_Right(self.velocity_1_Right_value)
+
     def Click_Stop_Btn(self):
         self.myunitree_b1.Robot_force_Stop()
 
@@ -215,6 +232,7 @@ class MyWindow(QMainWindow):
         self.Turn_L_btn_pressed_state = True
         self.L_btn.setStyleSheet("background-color: rgb(206, 206, 206);")
         self.myunitree_b1.Turn_Left(self.yawspeed_value_L)
+
     def Click_Turn_R_Btn(self):
         self.Turn_R_btn_pressed_state = True
         self.R_btn.setStyleSheet("background-color: rgb(206, 206, 206);")
@@ -222,6 +240,7 @@ class MyWindow(QMainWindow):
 
     def click_auto_start_Position(self):
         self.AutoMode_flag = True
+
     def click_auto_end_Position(self):
         self.AutoMode_flag = False
         self.myunitree_b1.Robot_Stop()
@@ -230,23 +249,28 @@ class MyWindow(QMainWindow):
         self.Front_btn_pressed_state = False
         self.N_btn.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.myunitree_b1.Robot_Stop()
+
     def Release_Back_Btn(self):
         self.Back_btn_pressed_state = False
         self.S_btn.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.myunitree_b1.Robot_Stop()
+
     def Release_Left_Btn(self):
         self.Left_btn_pressed_state = False
         self.W_btn.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.myunitree_b1.Robot_Stop()
+
     def Release_Right_Btn(self):
         self.Right_btn_pressed_state = False
         self.E_btn.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.myunitree_b1.Robot_Stop()
+
     def Release_Turn_L_Btn(self):
         self.Turn_L_btn_pressed_state = False
         self.L_btn.setStyleSheet("background:rgb(112, 112, 112);"
                                  "color:rgb(255, 255, 255);")
         self.myunitree_b1.Robot_Stop()
+
     def Release_Turn_R_Btn(self):
         self.Turn_R_btn_pressed_state = False
         self.R_btn.setStyleSheet("background:rgb(112, 112, 112);"
@@ -306,18 +330,30 @@ class MyWindow(QMainWindow):
         except Exception as e:
             print("udp_connect에서 예외 발생:")
             traceback.print_exc()
+    def udp_disconnect(self):
+        try:
+            self.myunitree_b1.disconnect()
+            h1 = Tread1(self)
+            h1.start()
+        except Exception as e:
+            print("udp_disconnect에서 예외 발생:")
+            traceback.print_exc()
 
     def update_label(self):
         self.SOC_label.setText("{:.1f}".format(self.data_SOC))
         self.Mode_label.setText("{:.1f}".format(self.data_mode))
         self.GaitType_label.setText("{:.1f}".format(self.data_gaitType))
         self.State_Position_0_label.setText("{:.1f}".format(self.data_position_hstate[0]))
-        self.State_Position_1_label.setText("-{:.1f}".format(self.data_position_hstate[1]))
+        self.State_Position_1_label.setText("{:.1f}".format(-self.data_position_hstate[1]))
+        self.BQ_NTC_label.setText("{:.1f}".format(self.data_BQ_NTC[0])) # 8.0
+        self.MCU_NTC_label.setText("{:.1f}".format(self.data_MCU_NTC[0])) # 12.0
 
         if self.myunitree_b1.connect_flag:
             self.State_Connect_label.setText("Connect")
             self.State_Connect_label.setStyleSheet("color: blue;")
-
+        else:
+            self.State_Connect_label.setText("Disconnect")
+            self.State_Connect_label.setStyleSheet("color: red;")
 
     # ------ 카메라 관련 메소드 ------------------------------------
     def camera_on(self):
