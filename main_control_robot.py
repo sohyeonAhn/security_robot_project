@@ -419,61 +419,6 @@ class MyWindow(QMainWindow):
             self.graph_PositionGraph_test(x_values_2, y_values_2)
 
     # ------ Auto Position 메서드---------------------
-    def Auto_move_1(self):
-        # data_position_hstate: 현재 좌표 [y,x,높이]
-        # position_0_InputValue: 지정한 y좌표
-        # position_1_InputValue: 지정한 x좌표
-
-        # y좌표 방향 확인
-        if self.position_0_InputValue > self.data_position_hstate[0]:
-            print(f"현재 위치1-1 :({self.data_position_hstate[0]}, {self.data_position_hstate[1]})")
-            # y좌표 좌표 격차 확인
-            if abs(self.position_0_InputValue - self.data_position_hstate[0]) > 0.1:
-                print("1-1 격차가 0.1 초과")
-                self.move_vel_0 = self.velocity_0_Front_value
-            elif abs(self.position_0_InputValue - self.data_position_hstate[0]) < 0.1:
-                print("1-1 격차가 0.1 미만")
-                self.move_vel_0 = 0
-        elif self.position_0_InputValue < self.data_position_hstate[0]:
-            print(f"현재 위치1-2 :({self.data_position_hstate[0]}, {self.data_position_hstate[1]})")
-            # y좌표 좌표 격차 확인
-            if abs(self.position_0_InputValue - self.data_position_hstate[0]) > 0.1:
-                print("1-2 격차가 0.1 초과")
-                self.move_vel_0 = self.velocity_0_Back_value
-            elif abs(self.position_0_InputValue - self.data_position_hstate[0]) < 0.1:
-                print("1-2 격차가 0.1 미만")
-                self.move_vel_0 = 0
-
-        # x좌표 방향 확인
-        # left(+)/right(-)
-        if self.position_1_InputValue > self.data_position_hstate[1]:
-            print(f"현재 위치2-1 :({self.data_position_hstate[0]}, {self.data_position_hstate[1]})")
-            # x좌표 좌표 격차 확인
-            if abs(self.position_1_InputValue - self.data_position_hstate[1]) > 0.1:
-                print("2-1 격차가 0.1 초과")
-                self.move_vel_1 = self.velocity_1_Left_value
-            elif abs(self.position_1_InputValue - self.data_position_hstate[1]) <= 0.1:
-                print("2-1 격차가 0.1 미만")
-                self.move_vel_1 = 0
-        elif self.position_1_InputValue < self.data_position_hstate[1]:
-            print(f"현재 위치2-2 :({self.data_position_hstate[0]}, {self.data_position_hstate[1]})")
-            # x좌표 좌표 격차 확인
-            if abs(self.position_1_InputValue - self.data_position_hstate[1]) > 0.1:
-                print("2-2 격차가 0.1 초과")
-                self.move_vel_1 = self.velocity_1_Right_value
-            elif abs(self.position_1_InputValue - self.data_position_hstate[1]) < 0.1:
-                print("2-2 격차가 0.1 미만")
-                self.move_vel_1 = 0
-
-        # 좌표 지정 -> 이동
-        self.myunitree_b1.Move_mult(self.move_vel_0, self.move_vel_1)
-
-        # 좌표이동 완료
-        if abs(self.position_1_InputValue - self.data_position_hstate[1]) < 0.1 and abs(
-                self.position_0_InputValue - self.data_position_hstate[0]) < 0.1:
-            print("좌표 지정 완료")
-            self.click_auto_end_Position()
-
     def Auto_move_2(self):
         # data_position_hstate: 현재 좌표 [y,x,높이]
         # position_0_InputValue: 지정한 y좌표
