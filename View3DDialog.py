@@ -30,4 +30,3 @@ class View3DDialog(QDialog):
         self.open_gl.update()
 
 
-

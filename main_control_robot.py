@@ -209,22 +209,18 @@ class MyWindow(QMainWindow):
         self.Front_btn_pressed_state = True
         self.N_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
         self.myunitree_b1.Move_Front(self.velocity_0_Front_value)
-
     def Click_Back_Btn(self):
         self.Back_btn_pressed_state = True
         self.S_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
         self.myunitree_b1.Move_Back(self.velocity_0_Back_value)
-
     def Click_Left_Btn(self):
         self.Left_btn_pressed_state = True
         self.W_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
         self.myunitree_b1.Move_Left(self.velocity_1_Left_value)
-
     def Click_Right_Btn(self):
         self.Right_btn_pressed_state = True
         self.E_btn.setStyleSheet("background-color: rgb(172, 206, 255);")
         self.myunitree_b1.Move_Right(self.velocity_1_Right_value)
-
     def Click_Stop_Btn(self):
         self.myunitree_b1.Robot_force_Stop()
 
@@ -232,7 +228,6 @@ class MyWindow(QMainWindow):
         self.Turn_L_btn_pressed_state = True
         self.L_btn.setStyleSheet("background-color: rgb(206, 206, 206);")
         self.myunitree_b1.Turn_Left(self.yawspeed_value_L)
-
     def Click_Turn_R_Btn(self):
         self.Turn_R_btn_pressed_state = True
         self.R_btn.setStyleSheet("background-color: rgb(206, 206, 206);")
@@ -249,28 +244,23 @@ class MyWindow(QMainWindow):
         self.Front_btn_pressed_state = False
         self.N_btn.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.myunitree_b1.Robot_Stop()
-
     def Release_Back_Btn(self):
         self.Back_btn_pressed_state = False
         self.S_btn.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.myunitree_b1.Robot_Stop()
-
     def Release_Left_Btn(self):
         self.Left_btn_pressed_state = False
         self.W_btn.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.myunitree_b1.Robot_Stop()
-
     def Release_Right_Btn(self):
         self.Right_btn_pressed_state = False
         self.E_btn.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.myunitree_b1.Robot_Stop()
-
     def Release_Turn_L_Btn(self):
         self.Turn_L_btn_pressed_state = False
         self.L_btn.setStyleSheet("background:rgb(112, 112, 112);"
                                  "color:rgb(255, 255, 255);")
         self.myunitree_b1.Robot_Stop()
-
     def Release_Turn_R_Btn(self):
         self.Turn_R_btn_pressed_state = False
         self.R_btn.setStyleSheet("background:rgb(112, 112, 112);"
