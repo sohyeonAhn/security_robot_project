@@ -1,4 +1,4 @@
-# ip 카메라 관련 클래스
+# ip 카메라 관련 클래스으
 # camera.py
 import cv2
 from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot, Qt
