@@ -12,7 +12,7 @@ import pyqtgraph as pg
 from myunitree_robot import myunitree
 from View3DDialog import View3DDialog
 import os
-from camera import *
+from ipCamera import *
 from rplidar import RPLidar
 
 os.environ["OPENCV_FFMPEG_CAPTURE_OPTIONS"] = "rtsp_transport;udp"
